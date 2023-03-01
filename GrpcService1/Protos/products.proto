@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+option csharp_namespace = "GrpcProducts";
+
+package prods;
+
+import "google/protobuf/empty.proto";
+
+service ProductsManager {
+	rpc GetProducts (google.protobuf.Empty) returns (Product);
+  rpc GetProduct (IdReq) returns (Product);
+  rpc DeleteProduct (IdReq) returns (google.protobuf.Empty);
+}
+
+message IdReq {
+  int32 id = 1;
+}
+
+message Product {
+  int32 ID = 1;
+  string Name = 2;
+  repeated int32 Qty = 3;
+  float Price = 4;
+}
